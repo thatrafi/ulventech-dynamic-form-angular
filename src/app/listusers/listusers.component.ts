@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { IForm } from '../form';
 import { FormService } from '../form.service';
+import { IFormRequest} from '../FormRequest';
 
 @Component({
   selector: 'app-listusers',
@@ -24,6 +26,11 @@ export class ListusersComponent implements OnInit {
           console.error('There was an error!', error);
       }
   })   
+  }
+
+
+  postUser(){
+
   }
 
 }
