@@ -7,11 +7,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListusersComponent } from './listusers/listusers.component';
 import { FormService } from './form.service';
 import {HttpClientModule} from '@angular/common/http'
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http'
     MatInputModule,
     MatToolbarModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ],
   providers: [
     FormService

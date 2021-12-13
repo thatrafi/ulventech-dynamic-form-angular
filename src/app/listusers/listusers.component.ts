@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup,FormBuilder } from '@angular/forms';
+import { IApiResult } from '../ApiResult';
 import { IForm } from '../form';
 import { FormService } from '../form.service';
 import { IFormRequest} from '../FormRequest';
@@ -11,9 +12,11 @@ import { IFormRequest} from '../FormRequest';
 })
 export class ListusersComponent implements OnInit {
   public forms : IForm[] = [];
+  postResult? : IApiResult;
+  formData : FormGroup;
 
-  constructor(private _userService : FormService) { 
-    
+  constructor(private _userService : FormService,public fb: FormBuilder) { 
+    this.formData = this.fb.group({})
   }
 
   ngOnInit() {
@@ -21,16 +24,32 @@ export class ListusersComponent implements OnInit {
       next: res => {
           console.log(res)
           this.forms = res.data;
+          let map : {[index:string]: string}={};
+          res.data.forEach(element => {
+            map[element.fieldName] = element.value
+          });
+          console.log(map)
+          this.formData = this.fb.group(map)
       },
       error: error => {
           console.error('There was an error!', error);
       }
-  })   
+    });
   }
 
 
-  postUser(){
-
+  onClickSubmit() {
+    console.log(this.formData.value)
+    this._userService.postUser(this.formData.value)
+    .subscribe({
+      next: res => {
+          this.postResult = res
+          console.log(this.postResult)
+      },
+      error: error => {
+          console.error('There was an error!', error);
+      }
+    });
   }
 
 }

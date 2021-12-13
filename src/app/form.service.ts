@@ -16,7 +16,7 @@ export class FormService {
     return this.http.get<IApiResult>(this.url);
   }
 
-  postUser(postData : IFormRequest){
-    console.log(postData)
+  postUser(postData : any) : Observable<IApiResult>{
+    return this.http.post<any>(this.url, postData)
   }
 }
