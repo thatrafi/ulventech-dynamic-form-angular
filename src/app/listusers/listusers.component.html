@@ -1,0 +1,16 @@
+<div class="container">
+    <h1>Form User</h1>
+    <form *ngFor="let form of forms">
+        <div *ngIf="form.type != 'select'" class="form-group">
+            <label for="">{{form.fieldName}}</label>
+            <input type="{{form.type}}" value="{{form.value}}" class="form-control">
+        </div>
+        <div *ngIf="form.type == 'select'" class="form-group">
+            <label for="">{{form.fieldName}}</label>
+            <select name="{{form.fieldName}}" value="{{form.value}}" class="form-control">
+                    <option *ngFor="let option of form.options" value="{{option}}">{{option}}</option>
+            </select>
+        </div>
+    </form>
+</div>
+
