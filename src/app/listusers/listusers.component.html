@@ -6,7 +6,7 @@
             <div *ngFor="let form of forms">
                 <mat-form-field *ngIf="form.type != 'select'" [style.width.%]="100" appearance="outline">
                   <mat-label>{{form.fieldName}}</mat-label>
-                  <input matInput [name]=form.fieldName [value]=form.value placeholder="Placeholder" formControlName="{{form.fieldName}}">
+                  <input matInput [name]=form.fieldName [value]=form.value  placeholder="Placeholder" formControlName="{{form.fieldName}}">
                 </mat-form-field>
                 <mat-form-field *ngIf="form.type == 'select'" [style.width.%]="100" appearance="fill">
                     <mat-label>Choose an option</mat-label>

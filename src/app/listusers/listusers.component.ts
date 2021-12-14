@@ -40,7 +40,15 @@ export class ListusersComponent implements OnInit {
 
 
   onClickSubmit() {
-    console.log(this.formData.value)
+    let formData = this.formData.value
+    // validate form
+    for (const [key, val] of Object.entries(formData)){
+      if(val == ''){
+        this.openSnackBar(`${key} can't empty!`,"OK");
+        return;
+      }
+    }
+    // post data
     this.IsLoading = true
     this._userService.postUser(this.formData.value)
     .subscribe({
