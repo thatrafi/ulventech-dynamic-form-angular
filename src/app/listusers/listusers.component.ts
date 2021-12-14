@@ -3,7 +3,7 @@ import { FormGroup,FormBuilder } from '@angular/forms';
 import { IApiResult } from '../ApiResult';
 import { IForm } from '../form';
 import { FormService } from '../form.service';
-import { IFormRequest} from '../FormRequest';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listusers',
@@ -14,8 +14,9 @@ export class ListusersComponent implements OnInit {
   public forms : IForm[] = [];
   postResult? : IApiResult;
   formData : FormGroup;
+  IsLoading : boolean = false;
 
-  constructor(private _userService : FormService,public fb: FormBuilder) { 
+  constructor(private _userService : FormService,public fb: FormBuilder,private _snackbar: MatSnackBar) { 
     this.formData = this.fb.group({})
   }
 
@@ -40,16 +41,24 @@ export class ListusersComponent implements OnInit {
 
   onClickSubmit() {
     console.log(this.formData.value)
+    this.IsLoading = true
     this._userService.postUser(this.formData.value)
     .subscribe({
       next: res => {
+          this.IsLoading = false
           this.postResult = res
-          console.log(this.postResult)
+          console.log(this.postResult);
+          this.openSnackBar(res.message,"OK");
       },
       error: error => {
+        this.IsLoading = false
           console.error('There was an error!', error);
       }
     });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackbar.open(message, action);
   }
 
 }

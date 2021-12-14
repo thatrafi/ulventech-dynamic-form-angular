@@ -6,7 +6,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,7 +32,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatSelectModule,
     MatButtonModule,
-    ReactiveFormsModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [
     FormService
